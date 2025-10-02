@@ -1,5 +1,6 @@
 package com.example.e_commerce_store.entity;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,7 +10,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class User {
 
     @Id
@@ -23,5 +23,23 @@ public class User {
     private String email;
 
     private String name;
+
+    @Column(nullable = false)
     private String password;
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String hashPassword){
+        this.password = hashPassword;
+    }
+
+    public Roles getRole() {
+        return this.role;
+    }
+
+    public String getEmail() {
+        return  this.email;
+    }
 }
