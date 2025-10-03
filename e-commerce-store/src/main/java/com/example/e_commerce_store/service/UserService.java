@@ -24,7 +24,9 @@ public class UserService {
 
         String password = user.getPassword();
         user.setPassword(this.securityConfiguration.passwordEncoder().encode(password));
-        user.setRoles(Collections.singleton(Roles.SELLER));
+        if(user.getRoles().isEmpty()){
+            user.setRoles(Collections.singleton(Roles.USER));
+        }
 
         return this.userRepository.save(user);
     }
