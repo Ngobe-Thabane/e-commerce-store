@@ -1,8 +1,10 @@
 package com.example.e_commerce_store.entity;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
+
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -16,8 +18,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    private Roles role = Roles.USER;
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    private Set<Roles> roles;
 
     @Column(unique = true)
     private String email;
@@ -27,19 +32,4 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String hashPassword){
-        this.password = hashPassword;
-    }
-
-    public Roles getRole() {
-        return this.role;
-    }
-
-    public String getEmail() {
-        return  this.email;
-    }
 }
