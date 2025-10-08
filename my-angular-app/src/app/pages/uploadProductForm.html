@@ -1,0 +1,44 @@
+<div class="max-w-2xl mx-auto p-6 bg-white rounded-2xl shadow-md mt-10">
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">Upload New Product</h2>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="productForm" enctype="multipart/form-data" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Product Name</label>
+      <input type="text" formControlName="name"
+             class="mt-1 block w-full rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500" />
+      <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched"
+           class="text-red-500 text-sm mt-1">Name is required.</div>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Description</label>
+      <textarea formControlName="description"
+                class="mt-1 block w-full rounded-lg border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                rows="3"></textarea>
+      <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched"
+           class="text-red-500 text-sm mt-1">Description is required.</div>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Product Image</label>
+      <input type="file" (change)="onFileSelected($event)"
+             class="mt-2 block w-full text-sm text-gray-700" accept="image/*" />
+      <div *ngIf="selectedImage" class="mt-3">
+        <img [src]="selectedImage" alt="Preview" class="h-40 w-auto rounded-lg shadow-sm">
+      </div>
+    </div>
+
+    <button type="submit"
+            [disabled]="productForm.invalid || !file"
+            class="w-full py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50">
+      Upload Product
+    </button>
+  </form>
+
+  <div *ngIf="uploadSuccess" class="mt-4 text-green-600 text-sm">
+    ✅ Product uploaded successfully!
+  </div>
+  <div *ngIf="uploadError" class="mt-4 text-red-600 text-sm">
+    ❌ {{ uploadError }}
+  </div>
+</div>
