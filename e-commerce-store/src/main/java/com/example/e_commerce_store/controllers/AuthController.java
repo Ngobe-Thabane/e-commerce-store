@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController()
@@ -35,8 +36,10 @@ public class AuthController {
 
         var userDetails = userDetailsService.loadUserByUsername(user.getEmail());
         String token = jwtUtil.generateToken(userDetails.getUsername());
+        HashMap<String, String> response = new HashMap<>();
+        response.put("token", token);
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/register")

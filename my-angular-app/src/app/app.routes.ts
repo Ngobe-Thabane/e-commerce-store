@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { AuthForm } from './components/AuthForm';
-import { App } from './app';
+import { HomePage } from './components/HomePage';
 
 export const routes: Routes = [
-  {path: '', component: App },
+  {path: '', component: HomePage },
   { path: 'login', component: AuthForm },
 ];

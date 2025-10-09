@@ -2,80 +2,14 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-form',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  template: `
-    <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div
-        class="w-full max-w-sm bg-white rounded-2xl shadow-md p-6 sm:p-8 transition-all"
-      >
-        <h2 class="text-2xl font-semibold text-center mb-6 text-gray-800">
-          {{ isLoginMode() ? 'Login' : 'Create Account' }}
-        </h2>
-
-        <form (ngSubmit)="onSubmit()" class="space-y-4">
-          <div>
-            <label class="block text-gray-700 font-medium mb-1">Email</label>
-            <input
-              [(ngModel)]="email"
-              name="email"
-              type="email"
-              required
-              placeholder="you@example.com"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          <div>
-            <label class="block text-gray-700 font-medium mb-1">Password</label>
-            <input
-              [(ngModel)]="password"
-              name="password"
-              type="password"
-              required
-              placeholder="••••••••"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          <div *ngIf="!isLoginMode()">
-            <label class="block text-gray-700 font-medium mb-1">Confirm Password</label>
-            <input
-              [(ngModel)]="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              required
-              placeholder="••••••••"
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          <button
-            type="submit"
-            class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-all font-medium"
-          >
-            {{ isLoginMode() ? 'Login' : 'Register' }}
-          </button>
-        </form>
-
-        <div class="text-center mt-4">
-          <p class="text-sm text-gray-600">
-            {{ isLoginMode() ? "Don't have an account?" : 'Already have an account?' }}
-            <a
-              href="#"
-              (click)="toggleMode($event)"
-              class="text-blue-600 hover:underline font-medium ml-1"
-            >
-              {{ isLoginMode() ? 'Sign up' : 'Login' }}
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-  `,
+  templateUrl: '../pages/AuthForm.html',
 })
 export class AuthForm {
   isLoginMode = signal(true);
@@ -83,6 +17,8 @@ export class AuthForm {
   email = '';
   password = '';
   confirmPassword = '';
+
+  constructor(private http:HttpClient, private router:Router){}
 
   toggleMode(event: Event) {
     event.preventDefault();
@@ -92,12 +28,24 @@ export class AuthForm {
   onSubmit() {
     if (this.isLoginMode()) {
       alert(`Logged in as ${this.email}`);
+      this.http.post("http://localhost:5000/auth/login", {
+        email: this.email,
+        password: this.password
+      }).subscribe({
+        next: (response) => {
+          localStorage.setItem("auth_token", (response as any).token);
+          this.router.navigate(['/']);
+        },
+        error: (error) => {
+          console.error("Login failed", error);
+        }
+      });
+
     } else {
       if (this.password !== this.confirmPassword) {
         alert('Passwords do not match');
         return;
       }
-      alert(`Registered as ${this.email}`);
     }
   }
 }
