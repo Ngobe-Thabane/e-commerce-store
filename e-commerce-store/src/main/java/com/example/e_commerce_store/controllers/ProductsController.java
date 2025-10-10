@@ -22,32 +22,33 @@ public class ProductsController {
         this.productService = productService;
     }
 
-    @PreAuthorize("hasRole('SELLER')")
-    @PostMapping("/product")
-    public Products addProduct(@RequestBody Products product){
-        return this.productsService.addProduct(product);
-    }
+//    @PreAuthorize("hasRole('SELLER')")
+//    @PostMapping("/product")
+//    public Products addProduct(@RequestBody Products product){
+//        return this.productsService.addProduct(product);
+//    }
 
     public  void deleteProduct(@RequestBody long id){
         this.productsService.deleteProduct(id);
     }
 
+    @GetMapping(value = "/products")
     public List<Products> getAllProducts(){
         return  this.productsService.getAllProducts();
     }
+//
+//    @DeleteMapping(value = "/deleteProduct")
+//    p
 
     @PostMapping(value = "/addProduct", consumes = {"multipart/form-data"})
-    public ResponseEntity<?> createProduct(@ModelAttribute @Valid ProductRequest request) {
+    public Products createProduct(@ModelAttribute @Valid ProductRequest request) {
 
-        // ✅ Step 1: Validate data (Spring does this automatically with @Valid)
-        // ✅ Step 2: Upload image to MinIO
         String imageUrl = productService.uploadImage(request.getImage());
+        System.out.println(request.getName());
+        System.out.println(request.getDescription());
+        System.out.println(request.getQuantity());
 
-        // ✅ Step 3: Save product to DB (pseudo code)
-        // Product product = new Product(request.getName(), request.getDescription(), imageUrl);
-        // productRepository.save(product);
-
-        return ResponseEntity.ok("Product created with image: " + imageUrl);
+        return this.productsService.addProduct(request, imageUrl);
     }
 
 }

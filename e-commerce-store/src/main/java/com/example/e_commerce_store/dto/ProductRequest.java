@@ -18,6 +18,8 @@ public class ProductRequest {
     @NotBlank
     private String description;
 
+    private long quantity;
+
     @NotNull
     private MultipartFile image;
 }

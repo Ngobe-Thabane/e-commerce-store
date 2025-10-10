@@ -1,5 +1,6 @@
 package com.example.e_commerce_store.service;
 
+import com.example.e_commerce_store.dto.ProductRequest;
 import com.example.e_commerce_store.entity.Products;
 import com.example.e_commerce_store.repository.ProductsRepository;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,8 @@ public class ProductsService {
         this.productsRepository = productsRepository;
     }
 
-    public Products addProduct(Products product){
+    public Products addProduct(ProductRequest request, String imageUrl){
+        Products product = new Products(request, imageUrl);
         return  this.productsRepository.save(product);
     }
 

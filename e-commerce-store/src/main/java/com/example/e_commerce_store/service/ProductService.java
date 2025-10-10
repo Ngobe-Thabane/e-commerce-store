@@ -47,7 +47,7 @@ public class ProductService {
                                     .build()
             );
 
-            return  String.format("%s%s%s", this.minioClient, bucketName, objectName);
+            return  String.format("%s%s/%s", "http://127.0.0.1:9001/", bucketName, objectName);
         } catch (Exception e) {
             throw new RuntimeException("Error uploading to MinIO",e);
         }
