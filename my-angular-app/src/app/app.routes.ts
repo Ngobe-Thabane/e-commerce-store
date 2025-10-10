@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
-import { AuthForm } from './components/AuthForm';
-import { HomePage } from './components/HomePage';
+import { AuthComponent } from './features/auth/auth.component';
+import { HomeComponent } from './core/shared/home.component';
 
 export const routes: Routes = [
-  {path: '', component: HomePage },
-  { path: 'login', component: AuthForm },
+  {path:'', component:HomeComponent},
+  {
+    path: 'login', component: AuthComponent },
 ];
