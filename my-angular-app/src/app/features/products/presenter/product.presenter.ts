@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from "@angular/core";
-import { Product } from "./product.model";
-import { ProductService } from "./product.service";
+import { ProductService } from "../service/product.service";
+import { Product } from "../model/product.model";
 
 @Injectable({providedIn:'root'})
 export class ProductsPresenter{
