@@ -1,4 +1,4 @@
-import { Inject, inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Product } from '../model/product.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../enviroment';
@@ -57,10 +57,10 @@ export class ProductService {
               'https://images.unsplash.com/photo-1603190287605-e6ade32fa852?auto=fGormat&fit=crop&w=400&q=60',
           },
         ];
+        this.products.set(mockProducts);
         return of(mockProducts).pipe(delay(500)); // simulate API delay
       })
     );
   }
-
   
 }

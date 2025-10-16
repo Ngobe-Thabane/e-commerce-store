@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ProductService } from './service/product.service';
 import { RouterLink } from '@angular/router';
 import { ProductsPresenter } from './presenter/product.presenter';
@@ -10,7 +10,6 @@ import { ProductsPresenter } from './presenter/product.presenter';
   imports: [CommonModule, RouterLink],
   providers: [ProductsPresenter, ProductService],
 })
-
 export class ProductComponet {
   presenter = inject(ProductsPresenter);
 

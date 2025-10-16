@@ -1,16 +1,15 @@
-import { computed, inject } from "@angular/core";
-import { AuthService } from "../auth/auth.service";
+import { computed, inject } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 
-export class NavBarPresenter{
+export class NavBarPresenter {
+  private authService = inject(AuthService);
 
-    private authService = inject(AuthService);
+  currentUser = this.authService.currentUser;
 
-    currentUser = this.authService.currentUser;
+  isLoggedIn = computed(() => !!this.currentUser());
+  displayName = computed(() => this.currentUser()?.email ?? 'Guest');
 
-    isLoggedIn = computed(() => !!this.currentUser());
-    displayName = computed(() => this.currentUser()?.email ?? 'Guest');
-
-    logout() {
-        this.authService.logout();
-    }
+  logout() {
+    this.authService.logout();
+  }
 }

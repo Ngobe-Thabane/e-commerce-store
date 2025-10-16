@@ -1,4 +1,4 @@
-import { effect, inject, Injectable, signal } from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import { ProductService } from "../service/product.service";
 import { Product } from "../model/product.model";
 
@@ -6,10 +6,12 @@ import { Product } from "../model/product.model";
 export class ProductDetailPresenter {
 
   productService = inject(ProductService);
-  product = signal<Product|null>(null)
+  product = signal<Product|null>(null);
+
 
 
   loadProductById(id: string) {
+    this.productService.loadProducts();
     this.productService.loadProductById(id);
     this.product.set(this.productService.slectedProduct());
   };

@@ -1,25 +1,21 @@
 <nav class="bg-white shadow-md px-6 py-3 flex items-center justify-between sticky top-0 z-50">
-
   <div class="flex items-center space-x-6">
     <a href="/" class="text-2xl font-bold text-indigo-600 hover:text-indigo-800 transition">
       E-Shop
     </a>
     <ul class="hidden md:flex space-x-4">
       <li>
-        <a href="/products"
-           class="text-gray-700 hover:text-indigo-600 font-medium transition">
+        <a href="/products" class="text-gray-700 hover:text-indigo-600 font-medium transition">
           Products
         </a>
       </li>
       <li>
-        <a href="/orders"
-           class="text-gray-700 hover:text-indigo-600 font-medium transition">
+        <a href="/orders" class="text-gray-700 hover:text-indigo-600 font-medium transition">
           Orders
         </a>
       </li>
       <li>
-        <a href="/cart"
-           class="text-gray-700 hover:text-indigo-600 font-medium transition">
+        <a href="/cart" class="text-gray-700 hover:text-indigo-600 font-medium transition">
           Cart
         </a>
       </li>
@@ -33,7 +29,8 @@
       </span>
       <button
         (click)="onLogout()"
-        class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+        class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+      >
         Logout
       </button>
     </ng-container>
@@ -41,7 +38,8 @@
     <ng-template #guest>
       <a
         href="/login"
-        class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+        class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+      >
         Login
       </a>
     </ng-template>

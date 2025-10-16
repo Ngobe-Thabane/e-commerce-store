@@ -1,29 +1,26 @@
-import { inject, Injectable, signal } from "@angular/core";
-import { ProductService } from "../service/product.service";
-import { Product } from "../model/product.model";
+import { inject, Injectable, signal } from '@angular/core';
+import { ProductService } from '../service/product.service';
+import { Product } from '../model/product.model';
 
-@Injectable({providedIn:'root'})
-export class ProductsPresenter{
+@Injectable({ providedIn: 'root' })
+export class ProductsPresenter {
+  private productService = inject(ProductService);
+  products = signal<Product[]>([]);
+  isLoading = signal<boolean>(false);
+  error = signal<string | null>(null);
 
-    
-    private productService = inject(ProductService);
-    products = signal<Product[]>([]);
-    isLoading = signal<boolean>(false);
-    error = signal<string|null>(null);
-    
-    loadProducts(){
+  loadProducts() {
+    this.isLoading.set(true);
 
-        this.isLoading.set(true);
-
-        this.productService.loadProducts().subscribe({
-            next: (products)=>{
-                this.products.set(products);
-                this.isLoading.set(false);
-            },
-            error:(err)=>{
-                this.error.set('Failed to load products.');
-                this.isLoading.set(false);
-            }
-        })
-    }
+    this.productService.loadProducts().subscribe({
+      next: (products) => {
+        this.products.set(products);
+        this.isLoading.set(false);
+      },
+      error: (err) => {
+        this.error.set('Failed to load products.');
+        this.isLoading.set(false);
+      },
+    });
+  }
 }

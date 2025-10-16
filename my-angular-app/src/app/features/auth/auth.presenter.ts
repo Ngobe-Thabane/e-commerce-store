@@ -1,31 +1,30 @@
-import { inject, Injectable } from "@angular/core";
-import { AuthService } from "./auth.service";
-import { User } from "./auth.model";
+import { inject, Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
+import { User } from './auth.model';
 
 @Injectable()
-export class AuthPresenter{
+export class AuthPresenter {
+  isLoginMode = true;
 
-    isLoginMode = true;
+  private authService = inject(AuthService);
 
-    private authService = inject(AuthService);
+  toggleMode() {
+    this.isLoginMode = !this.isLoginMode;
+  }
 
-    toggleMode(){
-        this.isLoginMode = !this.isLoginMode
-    }
+  login(user: User) {
+    this.authService.login(user);
+  }
 
-    login(user:User){
-        this.authService.login(user);
-    }
+  logout() {
+    this.authService.logout();
+  }
 
-    logout(){
-        this.authService.logout();
-    }
+  handleLogin(email: string, password: string) {
+    return this.authService.handleLogin(email, password);
+  }
 
-    handleLogin(email:string, password:string){
-        return this.authService.handleLogin(email, password);
-    }
-
-    handleregister(email:string, password:string, username:string){
-        return this.authService.handleRegister(email, password, username);
-    }
+  handleregister(email: string, password: string, username: string) {
+    return this.authService.handleRegister(email, password, username);
+  }
 }

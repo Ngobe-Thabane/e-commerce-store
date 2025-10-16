@@ -1,8 +1,8 @@
-
-
-<div  class="max-w-4xl mx-auto py-10 px-4">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white shadow-lg rounded-2xl p-6">
-    <img [src]="product.imageUrl" class="w-full rounded-xl object-cover">
+<div class="max-w-4xl mx-auto py-10 px-4">
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white shadow-lg rounded-2xl p-6"
+  >
+    <img [src]="product.imageUrl" class="w-full rounded-xl object-cover" />
 
     <div>
       <h1 class="text-3xl font-bold text-gray-800">{{ product.name }}</h1>
@@ -11,7 +11,8 @@
       <div class="flex items-center justify-between mt-6">
         <span class="text-2xl font-bold text-indigo-600">${{ product.price }}</span>
         <button
-          class="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition">
+          class="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 transition"
+        >
           Add to Cart
         </button>
       </div>
