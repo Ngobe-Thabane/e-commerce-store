@@ -1,9 +1,9 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { Product } from '../model/product.model';
+import { Product } from './model/product.model';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../enviroment';
+import { environment } from '../../../enviroment';
 import { catchError, delay, of } from 'rxjs';
-import { products } from '../model/products';
+import { products } from './model/products';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {

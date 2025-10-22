@@ -1,27 +1,24 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { ProductService } from '../service/product.service';
-import { Product } from '../model/product.model';
+import { ProductService } from './product.service';
+import { Product } from './model/product.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsPresenter {
-
   productService = inject(ProductService);
-  
-  constructor(){
+
+  constructor() {
     this.productService.loadProducts();
   }
 
-  products(){
+  products() {
     return this.productService.products();
   }
 
-  isLoading(){
+  isLoading() {
     return this.productService.isLoading();
   }
 
-  error(){
+  error() {
     return this.productService.error();
-  };
-  
-
+  }
 }

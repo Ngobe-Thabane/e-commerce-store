@@ -1,10 +1,13 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
-import { ProductService } from '../service/product.service';
-import { Product } from '../model/product.model';
+import { ProductService } from './product.service';
+import { Product } from './model/product.model';
+import { CartService } from '../cart/cart.service';
 
 @Injectable()
 export class ProductDetailPresenter {
   productService = inject(ProductService);
+  cartService = inject(CartService);
+
   id = signal<string | null>(null);
 
   constructor() {
@@ -17,6 +20,11 @@ export class ProductDetailPresenter {
         }
       }
     });
+  }
+
+  addProductToCart(product: Product) {
+    console.log('Adding product to cart:', product);
+    this.cartService.addItem(product);
   }
 
   setProductId(id: string) {
