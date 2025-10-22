@@ -17,8 +17,16 @@ export class ProductService {
   error = signal<string | null>(null);
 
   loadProductById(id: string) {
-    const product = this.products().find((p) => p.id === id) || null;
-    this.slectedProduct.set(product);
+    
+    this.http.get<Product>(`${this.BASE_URL}/products/${id}`)
+    .subscribe({
+      next:(product)=>{
+          this.slectedProduct.set(product);
+      },
+      error: (err)=>{
+        this.error.set("Could not load product");
+      }
+    })
   }
 
   loadProducts() {
