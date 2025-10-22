@@ -6,6 +6,8 @@ export class NavBarPresenter {
 
   currentUser = this.authService.currentUser;
 
+
+
   isLoggedIn = computed(() => !!this.currentUser());
   displayName = computed(() => this.currentUser()?.email ?? 'Guest');
 
