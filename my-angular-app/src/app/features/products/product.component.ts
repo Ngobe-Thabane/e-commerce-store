@@ -8,12 +8,8 @@ import { ProductsPresenter } from './presenter/product.presenter';
   selector: 'app-product',
   templateUrl: './view/product.component.html',
   imports: [CommonModule, RouterLink],
-  providers: [ProductsPresenter, ProductService],
+  providers: [ProductsPresenter],
 })
 export class ProductComponet {
   presenter = inject(ProductsPresenter);
-
-  constructor() {
-    this.presenter.loadProducts();
-  }
 }

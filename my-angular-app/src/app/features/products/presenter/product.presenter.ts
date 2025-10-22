@@ -4,23 +4,24 @@ import { Product } from '../model/product.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsPresenter {
-  private productService = inject(ProductService);
-  products = signal<Product[]>([]);
-  isLoading = signal<boolean>(false);
-  error = signal<string | null>(null);
 
-  loadProducts() {
-    this.isLoading.set(true);
-
-    this.productService.loadProducts().subscribe({
-      next: (products) => {
-        this.products.set(products);
-        this.isLoading.set(false);
-      },
-      error: (err) => {
-        this.error.set('Failed to load products.');
-        this.isLoading.set(false);
-      },
-    });
+  productService = inject(ProductService);
+  
+  constructor(){
+    this.productService.loadProducts();
   }
+
+  products(){
+    return this.productService.products();
+  }
+
+  isLoading(){
+    return this.productService.isLoading();
+  }
+
+  error(){
+    return this.productService.error();
+  };
+  
+
 }
