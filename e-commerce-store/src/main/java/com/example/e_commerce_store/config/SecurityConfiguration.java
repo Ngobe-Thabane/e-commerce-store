@@ -48,6 +48,8 @@ public class SecurityConfiguration {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests((request)-> {
                     request.requestMatchers("/auth/**").permitAll()
+                            .requestMatchers("/products/**").permitAll()
+                            .requestMatchers("/orders/**").permitAll()
                             .anyRequest().authenticated();
                 })
                 .exceptionHandling(
