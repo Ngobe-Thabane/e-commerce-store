@@ -7,7 +7,7 @@ import { Product } from "./product.model";
             description: 'Noise-cancelling, Bluetooth 5.0',
             price: 120,
             imageUrl:
-              'https://images.unsplash.com/photo-1603190287605-e6ade32fa852?auto=format&fit=crop&w=400&q=60',
+              'https://m.media-amazon.com/images/I/819GfPP8LHL._AC_SX522_.jpg',
           },
           {
             id: '2',
@@ -15,7 +15,7 @@ import { Product } from "./product.model";
             description: 'Track your fitness goals',
             price: 89,
             imageUrl:
-              'https://images.unsplash.com/photo-1603190287605-e6ade32fa852?auto=format&fit=crop&w=400&q=60',
+              'https://m.media-amazon.com/images/I/61AzW1KJl+L._AC_SX522_.jpg',
           },
           {
             id: '3',
@@ -23,7 +23,7 @@ import { Product } from "./product.model";
             description: 'Stylish and water-resistant',
             price: 60,
             imageUrl:
-              'https://images.unsplash.com/photo-1603190287605-e6ade32fa852?auto=format&fit=crop&w=400&q=60',
+              'https://m.media-amazon.com/images/I/41GNSdQClqL._AC_SY300_SX300_QL70_ML2_.jpg',
           },
           {
             id: '4',
@@ -31,6 +31,6 @@ import { Product } from "./product.model";
             description: 'RGB backlit, tactile keys',
             price: 75,
             imageUrl:
-              'https://images.unsplash.com/photo-1603190287605-e6ade32fa852?auto=fGormat&fit=crop&w=400&q=60',
+              'https://www.incredible.co.za/api/catalog/product/1/0/10114331_opt_ecommerce_8ccd.png?width=700&height=700&store=incredibleconnection&image-type=image',
           },
         ];

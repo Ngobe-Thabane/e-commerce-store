@@ -31,7 +31,7 @@
       class="bg-white shadow-md rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
     >
       <a [routerLink]="['/products', product.id]" class="block">
-        <img [src]="product.imageUrl" alt="{{ product.name }}" class="w-full h-56 object-cover" />
+        <img [src]="product.imageUrl" alt="{{ product.name }}" class="w-full h-56 object-contain" />
       </a>
 
       <div class="p-4 flex-col justify-between h-full">
