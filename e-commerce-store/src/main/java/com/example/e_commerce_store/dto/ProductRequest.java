@@ -18,7 +18,7 @@ public class ProductRequest {
     @NotBlank
     private String description;
 
-    private long quantity;
+    private float price;
 
     @NotNull
     private MultipartFile image;

@@ -15,11 +15,10 @@ import lombok.Setter;
 public class Products {
 
     public Products(ProductRequest request, String imageUrl){
-        System.out.println("hi");
-        this.productImage = imageUrl;
+        this.imageURL = imageUrl;
         this.name = request.getName();
         this.description = request.getDescription();
-        this.quantity = request.getQuantity();
+        this.price = request.getPrice();
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,8 +31,8 @@ public class Products {
     private String description;
 
     @Column(nullable = false)
-    private String productImage;
+    private String imageURL;
 
     @Column(nullable = false)
-    private long quantity;
+    private float price;
 }

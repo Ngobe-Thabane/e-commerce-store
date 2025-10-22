@@ -20,8 +20,22 @@ public class ProductsService {
         return  this.productsRepository.save(product);
     }
 
+    public Products getProduct(Long id){
+
+        if(!this.productsRepository.existsById(id)){
+            throw new RuntimeException("Product does not exist");
+        }
+
+        return this.productsRepository.findById(id).get();
+    }
+
     public void deleteProduct(long id) {
-         this.productsRepository.deleteById(id);
+
+        if(!this.productsRepository.existsById(id)){
+            throw  new RuntimeException("Order does not exits");
+        }
+
+        this.productsRepository.deleteById(id);
     }
 
     public List<Products> getAllProducts() {
