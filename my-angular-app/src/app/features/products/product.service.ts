@@ -19,6 +19,10 @@ export class ProductService {
   loadProductById(id: string) {
     
     this.http.get<Product>(`${this.BASE_URL}/products/${id}`)
+    .pipe(catchError((error)=>{
+      const prod = products.find(p=>p.id === id) || null;
+      return of(prod).pipe(delay(500));
+    }))
     .subscribe({
       next:(product)=>{
           this.slectedProduct.set(product);
